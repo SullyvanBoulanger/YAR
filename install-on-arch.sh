@@ -11,7 +11,9 @@ echo "##############################"
 sudo pacman -S --noconfirm --needed xorg xorg-xinit\
     bspwm sxhkd                     \
     ly                              \
+    nano                            \
     python-pywal                    \
+    nitrogen                        \
     git python3 gcc base-devel      \
     xwallpaper                      \
     mpv                             \
@@ -27,9 +29,6 @@ sudo pacman -S --noconfirm --needed xorg xorg-xinit\
 
 # Setup ly
 sudo systemctl enable ly.service &
-
-# Installing NVIM
-sudo pacman -S --noconfirm --needed neovim
 
 echo "##############################"
 echo "installing Rust and alacritty"
@@ -61,10 +60,8 @@ echo "Installing polybar"
 echo "##############################"
 paru -S --needed polybar
 
-echo "##############################"
-echo "Installing vim plug"
-echo "##############################"
-paru -Syu vim-plug
+sudo find ~/.config/ -type d -exec chmod 755 {} \;
+sudo find ~/.config/ -type f -exec chmod 644 {} \;
 
 echo "##############################"
 echo "Installing programs"
@@ -111,10 +108,7 @@ echo "##############################"
 echo "Setting up default colors"
 echo "##############################"
 
-DEFAULTWALL="$HOME/wallpapers/prairieAux1000Fleurs.png"
+# DEFAULTWALL="$HOME/wallpapers/prairieAux1000Fleurs.png"
 
-echo $DEFAULTWALL > $HOME/.currentwallpaper
-wal -i $DEFAULTWALL -n
-
-nvim $YARPATH/postinstallwarning
-
+# echo $DEFAULTWALL > $HOME/.currentwallpaper
+# wal -i $DEFAULTWALL -n
