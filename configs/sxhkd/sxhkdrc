@@ -35,10 +35,10 @@ super + shift + r
 	bspc wm -r; notify-send 'bspwm' 'Restarted'
 
 ## windows keybindings
-super + shift + q
+super + shift + a
 	bspc quit
 
-super + q
+super + a
 	bspc node -c
 
 super + i
@@ -57,7 +57,7 @@ super + shift + { Left, Down, Up, Right}
 	bspc node -s {west,south,north,east}
 
 ## Change workspace with dunst feedback
-super + {_,shift + }{1-9,0}
+super + {_,shift + }{ampersand,eacute,quotedbl,apostrophe,parenleft,section,egrave,exclam,ccedilla,agrave}
 	bspc {desktop --focus,node --to-desktop} 'focused:^{1-9,10}' --follow; \
 	~/bin/whichwspace
 

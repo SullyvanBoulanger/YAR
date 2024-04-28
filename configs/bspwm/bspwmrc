@@ -12,7 +12,7 @@ sxhkd &
 picom &
 dunst &
 polybar -c=~/.config/polybar/bar mybar -r &
-setwallpaper $(cat ~/.currentwallpaper)
+nitrogen --restore &
 
 # Monitors
 bspc monitor -d 1 2 3 4 5 6 7

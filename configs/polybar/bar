@@ -110,7 +110,7 @@ type = internal/xworkspaces
 
 pin-workspaces = true
 
-label-active = 
+label-active = 
 label-active-background = ${colors.background}
 label-active-foreground = ${colors.foreground}
 label-active-padding = 1
@@ -123,7 +123,7 @@ label-urgent = 
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 1
 
-label-empty = 
+label-empty = 
 label-empty-foreground = ${colors.disabled}
 label-empty-padding = 1
 
@@ -157,7 +157,7 @@ label-indicator-background = ${colors.secondary}
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+format-prefix = "󰍛 "
 format-prefix-foreground = ${colors.foreground}
 label = %percentage_used:2%%
 
@@ -182,102 +182,36 @@ label-foreground = ${colors.foreground}
 type = internal/battery
 
 ; This is useful in case the battery never reports 100% charge
+; Default: 100
 full-at = 99
+
+; format-low once this charge percentage is reached
+; Default: 10
+; New in version 3.6.0
+low-at = 5
 
 ; Use the following command to list batteries and adapters:
 ; $ ls -1 /sys/class/power_supply/
-battery = BAT1
-adapter = ACAD
+battery = BAT0
+adapter = ADP1
 
-; If an inotify event haven't been reported in this many
-; seconds, manually poll for new values.
-;
-; Needed as a fallback for systems that don't report events
-; on sysfs/procfs.
-;
-; Disable polling by setting the interval to 0.
-;
-; Default: 5
-poll-interval = 2
+poll-interval = 5
 
-; see "man date" for details on how to format the time string
-; NOTE: if you want to use syntax tags here you need to use %%{...}
-; Default: %H:%M:%S
+; Set the prefix for the discharging state
+format-discharging-prefix = "󰁹 "
+format-discharging-prefix-foreground = ${colors.foreground-alt}
+
+; Specify the time format
 time-format = %H:%M
 
-; Available tags:
-;   <label-charging> (default)
-;   <bar-capacity>
-;   <ramp-capacity>
-;   <animation-charging>
-format-charging = <animation-charging> <label-charging>
-format-charging-background = ${colors.background}
-format-charging-foreground = ${colors.aqua-alt}
-format-charging-overline = ${colors.background}
-format-charging-underline = ${colors.background}
-format-charging-padding = 1
-
-; Available tags:
-;   <label-discharging> (default)
-;   <bar-capacity>
-;   <ramp-capacity>
-;   <animation-discharging>
-format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-background = ${colors.background}
-format-discharging-foreground = ${colors.blue-alt}
-format-discharging-overline = ${colors.background}
-format-discharging-underline = ${colors.background}
-format-discharging-padding = 1
-; Available tags:
-;   <label-full> (default)
-;   <bar-capacity>
-;   <ramp-capacity>
-format-full = <label-full>
-format-full-prefix = %{T3}%{T-}
-format-full-background = ${colors.background}
-format-full-foreground = ${colors.blue}
-format-full-overline = ${colors.background}
-format-full-underline = ${colors.background}
-format-full-padding = 1
-
-; Available tokens:
-;   %percentage% (default)
-;   %time%
-;   %consumption% (shows current charge rate in watts)
-label-charging = %percentage%%
-; Available tokens:
-;   %percentage% (default)
-;   %time%
-;   %consumption% (shows current discharge rate in watts)
+; Define the label for the discharging state
 label-discharging = %percentage%%
 
-; Available tokens:
-;   %percentage% (default)
-label-full = " Full"
+; Define an alternative label that includes the time left
+label-discharging-alt = %percentage%% (%time%)
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
-ramp-capacity-font = 3
-; Only applies if <bar-capacity> is used
-;bar-capacity-width = 10
-
-; Only applies if <animation-charging> is used
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-font = 3
-; Framerate in milliseconds
-animation-charging-framerate = 750
-
-; Only applies if <animation-discharging> is used
-;;animation-discharging-0 = ${battery.anim0}
-;;animation-discharging-1 = ${battery.anim1}
-
-; Framerate in milliseconds
-;animation-discharging-framerate = 500
+; Use the alternative label on mouse click
+format-discharging = <label-discharging>
 
 
 [module/powermenu]
