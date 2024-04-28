@@ -11,9 +11,11 @@ echo "##############################"
 sudo pacman -S --noconfirm --needed xorg xorg-xinit\
     bspwm sxhkd                     \
     ly                              \
+    picom                           \
+    polybar                         \
     nano                            \
     python-pywal                    \
-    nitrogen                        \
+    feh                             \
     git python3 gcc base-devel      \
     xwallpaper                      \
     mpv                             \
@@ -25,7 +27,8 @@ sudo pacman -S --noconfirm --needed xorg xorg-xinit\
     xclip                           \
     cmake                           \
     ttf-nerd-fonts-symbols          \
-    dunst
+    dunst                           \
+    flameshot
 
 # Setup ly
 sudo systemctl enable ly.service &
@@ -46,22 +49,9 @@ makepkg -si && cd ..
 paru -Syu
 
 echo "##############################"
-echo "Installing Picom"
-echo "##############################"
-paru -S --noconfirm --needed picom-jonaburg-git
-
-echo "##############################"
 echo "Installing alacritty"
 echo "##############################"
 paru -S --noconfirm --needed alacritty
-
-echo "##############################"
-echo "Installing polybar"
-echo "##############################"
-paru -S --needed polybar
-
-sudo find ~/.config/ -type d -exec chmod 755 {} \;
-sudo find ~/.config/ -type f -exec chmod 644 {} \;
 
 echo "##############################"
 echo "Installing programs"
@@ -108,7 +98,5 @@ echo "##############################"
 echo "Setting up default colors"
 echo "##############################"
 
-# DEFAULTWALL="$HOME/wallpapers/prairieAux1000Fleurs.png"
-
-# echo $DEFAULTWALL > $HOME/.currentwallpaper
-# wal -i $DEFAULTWALL -n
+feh --bg-fill ~/wallpapers/prairieAux1000Fleurs.png
+wal -i ~/wallpapers/prairieAux1000Fleurs.png -n

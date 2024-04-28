@@ -12,7 +12,7 @@ sxhkd &
 picom &
 dunst &
 polybar -c=~/.config/polybar/bar mybar -r &
-nitrogen --restore &
+feh --bg-fill ~/wallpapers/prairieAux1000Fleurs.png &
 
 # Monitors
 bspc monitor -d 1 2 3 4 5 6 7

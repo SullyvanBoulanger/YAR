@@ -141,7 +141,7 @@ button {
     background-color:             	#C5C8C6;
     margin: 						5px;
     padding: 						5px;
-    text-color: 					@bg;
+    text-color: 					#282A2E;
     border: 						0px;
     border-radius: 					4px;
     border-color: 					#C5C8C6;
