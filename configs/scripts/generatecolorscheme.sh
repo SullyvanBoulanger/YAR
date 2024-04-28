@@ -10,6 +10,6 @@ if [ ! -f $1 ]; then
 	exit 2
 fi
 
-wal -i $(readlink -f $1) -n
+wal -i $1 -n
 
 cp $HOME/.cache/wal/colors.Xresources $HOME/.Xresources

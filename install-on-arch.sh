@@ -11,6 +11,7 @@ echo "##############################"
 sudo pacman -S --noconfirm --needed xorg xorg-xinit\
     bspwm sxhkd                     \
     ly                              \
+    python-pywal                    \
     git python3 gcc base-devel      \
     xwallpaper                      \
     mpv                             \
@@ -60,13 +61,6 @@ echo "Installing polybar"
 echo "##############################"
 paru -S --needed polybar
 
-sudo chmod 777 ~/.config/ -R
-
-echo "##############################"
-echo "Installing pywal"
-echo "##############################"
-paru -Syu pywal
-
 echo "##############################"
 echo "Installing vim plug"
 echo "##############################"
@@ -103,9 +97,6 @@ else
 fi
 
 sudo cp ~/.config/scripts/generatecolorscheme.sh /bin/generatecolorscheme
-sudo cp ~/.config/scripts/setwallpaper.sh /bin/setwallpaper
-
-sudo chmod +x /bin/setwallpaper
 sudo chmod +x /bin/generatecolorscheme
 
 sudo mv ~/.config/bashrc/.bashrc ~/.bashrc
