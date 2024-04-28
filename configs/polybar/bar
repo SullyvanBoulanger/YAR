@@ -42,9 +42,9 @@ font-1 = Symbols Nerd Font:antialias=true;3
 
 font-2 = Cascadia Code:pixelsize=9:antialias=true;2
 
-modules-left = archlogo xworkspaces xwindow
-modules-center = date
-modules-right = netspeedeth netspeedwlan separator pulseaudio separator xkeyboard separator memory separator cpu separator powermenu
+modules-left = archlogo xworkspaces
+modules-center = xwindow
+modules-right = pulseaudio separator memory separator cpu separator battery separator date separator powermenu
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -177,6 +177,108 @@ date-alt = %A %d/%m/%Y %H:%M:%S
 
 label = %date%
 label-foreground = ${colors.foreground}
+
+[module/battery]
+type = internal/battery
+
+; This is useful in case the battery never reports 100% charge
+full-at = 99
+
+; Use the following command to list batteries and adapters:
+; $ ls -1 /sys/class/power_supply/
+battery = BAT1
+adapter = ACAD
+
+; If an inotify event haven't been reported in this many
+; seconds, manually poll for new values.
+;
+; Needed as a fallback for systems that don't report events
+; on sysfs/procfs.
+;
+; Disable polling by setting the interval to 0.
+;
+; Default: 5
+poll-interval = 2
+
+; see "man date" for details on how to format the time string
+; NOTE: if you want to use syntax tags here you need to use %%{...}
+; Default: %H:%M:%S
+time-format = %H:%M
+
+; Available tags:
+;   <label-charging> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+;   <animation-charging>
+format-charging = <animation-charging> <label-charging>
+format-charging-background = ${colors.background}
+format-charging-foreground = ${colors.aqua-alt}
+format-charging-overline = ${colors.background}
+format-charging-underline = ${colors.background}
+format-charging-padding = 1
+
+; Available tags:
+;   <label-discharging> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+;   <animation-discharging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-background = ${colors.background}
+format-discharging-foreground = ${colors.blue-alt}
+format-discharging-overline = ${colors.background}
+format-discharging-underline = ${colors.background}
+format-discharging-padding = 1
+; Available tags:
+;   <label-full> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+format-full = <label-full>
+format-full-prefix = %{T3}%{T-}
+format-full-background = ${colors.background}
+format-full-foreground = ${colors.blue}
+format-full-overline = ${colors.background}
+format-full-underline = ${colors.background}
+format-full-padding = 1
+
+; Available tokens:
+;   %percentage% (default)
+;   %time%
+;   %consumption% (shows current charge rate in watts)
+label-charging = %percentage%%
+; Available tokens:
+;   %percentage% (default)
+;   %time%
+;   %consumption% (shows current discharge rate in watts)
+label-discharging = %percentage%%
+
+; Available tokens:
+;   %percentage% (default)
+label-full = " Full"
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-font = 3
+; Only applies if <bar-capacity> is used
+;bar-capacity-width = 10
+
+; Only applies if <animation-charging> is used
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-font = 3
+; Framerate in milliseconds
+animation-charging-framerate = 750
+
+; Only applies if <animation-discharging> is used
+;;animation-discharging-0 = ${battery.anim0}
+;;animation-discharging-1 = ${battery.anim1}
+
+; Framerate in milliseconds
+;animation-discharging-framerate = 500
+
 
 [module/powermenu]
 type = custom/menu

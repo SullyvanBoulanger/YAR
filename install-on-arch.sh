@@ -10,7 +10,7 @@ echo "Installing a bunch of stuff"
 echo "##############################"
 sudo pacman -S --noconfirm --needed xorg xorg-xinit\
     bspwm sxhkd                     \
-    lightdm lightdm-gtk-greeter     \
+    ly                              \
     git python3 gcc base-devel      \
     xwallpaper                      \
     mpv                             \
@@ -21,10 +21,11 @@ sudo pacman -S --noconfirm --needed xorg xorg-xinit\
     npm                             \
     xclip                           \
     cmake                           \
-    ttf-nerd-fonts-symbols
+    ttf-nerd-fonts-symbols          \
+    dunst
 
-# Setup lightdm
-sudo systemctl enable lightdm &
+# Setup ly
+sudo systemctl enable ly.service &
 
 # Installing NVIM
 sudo pacman -S --noconfirm --needed neovim
@@ -59,11 +60,6 @@ echo "Installing polybar"
 echo "##############################"
 paru -S --needed polybar
 
-echo "##############################"
-echo "Installing xwinwrap"
-echo "##############################"
-paru -S --needed xwinwrap
-
 sudo chmod 777 ~/.config/ -R
 
 echo "##############################"
@@ -85,28 +81,6 @@ echo "NOTE: installing programs now will also add them to the generatecolorschem
 echo "##############################"
 
 sleep 2
-
-echo "Do you want to install Discord? 1) yes    2) no"
-read -r -p "(Default: 1): " discord
-
-if [ -z $discord ] || [ $discord -eq "1" ]; then
-    sudo pacman -Syu discord
-    
-    paru -Syu pywal-discord && echo pywal-discord >> $YARPATH/configs/scripts/generatecolorscheme.sh
-    
-    curl -O https://raw.githubusercontent.com/bb010g/betterdiscordctl/master/betterdiscordctl
-    sudo chmod +x betterdiscordctl
-    sudo mv betterdiscordctl /usr/local/bin
-fi
-
-echo "Do you want to install Firefox? 1) yes    2) no"
-read -r -p "(Default: 1): " firefox
-
-if [ -z $firefox ] || [ $firefox -eq "1" ]; then
-    sudo pacman -Syu firefox
-    
-    paru -Syu python-pywalfox && echo pywalfox update >> $YARPATH/configs/scripts/generatecolorscheme.sh
-fi
 
 echo "##############################"
 echo "Copying configs"
@@ -146,7 +120,7 @@ echo "##############################"
 echo "Setting up default colors"
 echo "##############################"
 
-DEFAULTWALL="$HOME/wallpapers/purple.jpeg"
+DEFAULTWALL="$HOME/wallpapers/prairieAux1000Fleurs.png"
 
 echo $DEFAULTWALL > $HOME/.currentwallpaper
 wal -i $DEFAULTWALL -n
